@@ -1,8 +1,11 @@
 # Fill in the TODOs in this exercise, then run
 # python 01_function.py to see if your solution works!
 #
+from collections import OrderedDict
 import numpy as np
-raise NotImplementedError("TODO: add any other imports you need")
+import theano
+import  theano.tensor as T
+from theano import function
 
 def make_shared(shape):
     """
@@ -10,7 +13,7 @@ def make_shared(shape):
     shape.
     You can use any value you want.
     """
-    raise NotImplementedError("TODO: implement the function")
+    return theano.shared(np.zeros(shape))
 
 def exchange_shared(a, b):
     """
@@ -18,7 +21,10 @@ def exchange_shared(a, b):
     b: a theano shared variable
     Uses get_value and set_value to swap the values stored in a and b
     """
-    raise NotImplementedError("TODO: implement the function")
+    t1 = a.get_value()
+    t2 = b.get_value()
+    a.set_value(t2)
+    b.set_value(t1)
 
 def make_exchange_func(a, b):
     """
@@ -29,7 +35,13 @@ def make_exchange_func(a, b):
     values in a and b
     f should not return anything
     """
-    raise NotImplementedError("TODO: implement the function")
+    #Finally Got the answer by the below code works for anything you want to do with shared variable
+    #You can define a function and the new states of the variables are transferred through the
+    #updates parameter in the theano.funciton
+    updates = OrderedDict()
+    updates[a] = b
+    updates[b] = a
+    return function([], updates=updates)
 
 
 

@@ -2,16 +2,11 @@
 # python 03_tensor.py to see if your solution works!
 import numpy as np
 from theano import function
-raise NotImplementedError("TODO: add any other imports you need")
+import theano.tensor as T
+import theano
 
 def make_tensor(dim):
-    """
-    Returns a new Theano tensor with no broadcastable dimensions.
-    dim: the total number of dimensions of the tensor.
-    (You can use any dtype you like)
-    """
-
-    raise NotImplementedError("TODO: implement this function.")
+    return T.TensorType(broadcastable=tuple([False] *dim), dtype='float32')()
 
 def broadcasted_add(a, b):
     """
@@ -23,8 +18,8 @@ def broadcasted_add(a, b):
 
     for all i, j, k, l
     """
+    return a.dimshuffle(2, 'x', 1, 0) + b
 
-    raise NotImplementedError("TODO: implement this function.")
 
 def partial_max(a):
     """
@@ -37,7 +32,7 @@ def partial_max(a):
     for all i, j
     """
 
-    raise NotImplementedError("TODO: implement this function.")
+    return a.max(axis=(1,2))
 
 if __name__ == "__main__":
     a = make_tensor(3)
