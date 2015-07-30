@@ -19,7 +19,7 @@ def shrink_tensor(x, w):
         x = [0, 1, 2, 3, 4], w = 2  -> y = [2]
         x = [[1, 2, 3], [4, 5, 6], [7, 8, 9]], w =1 -> y = [[5]]
     """
-
+    return x[w,-w : w:-2]
     raise NotImplementedError("TODO: implement this function.")
 
 

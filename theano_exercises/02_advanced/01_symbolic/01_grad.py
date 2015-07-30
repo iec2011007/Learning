@@ -12,7 +12,7 @@ def grad_sum(x, y, z):
     Returns dz / dx + dz / dy
     """
 
-    raise NotImplementedError("TODO: implement this function.")
+    return T.grad(z,x) + T.grad(z,y)
 
 
 if __name__ == "__main__":

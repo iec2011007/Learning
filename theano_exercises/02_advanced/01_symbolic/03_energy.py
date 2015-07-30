@@ -39,7 +39,7 @@ def grad_expected_energy(W, V, H):
             of the energy
     """
 
-    raise NotImplementedError("TODO: implement this function.")
+    return T.grad(energy(W,V,H).mean(), W, consider_constant=[V,H])
 
 
 if __name__ == "__main__":

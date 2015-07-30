@@ -11,7 +11,7 @@ def increment_odd(x):
     incremented by 1.
     """
 
-    raise NotImplementedError("TODO: implement the function.")
+    return T.inc_subtensor(x[1::2],1)
 
 if __name__ == "__main__":
     x = T.vector()
